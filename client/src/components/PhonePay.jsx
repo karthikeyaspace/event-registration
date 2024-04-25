@@ -15,7 +15,7 @@ export default function PhonePay(){
     const handlePayment = async (e) => {
         e.preventDefault();
         setLoading(true)
-        await axios.post('http://localhost:3000/register/payment', {...data})
+        await axios.post('https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/payment', {...data})
         .then(res => {
             setTimeout(()=>{
                 setLoading(false)

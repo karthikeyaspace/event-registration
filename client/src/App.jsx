@@ -3,18 +3,15 @@ import React from "react";
 import Success from "./components/Success";
 import Failure from "./components/Failure";
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import Root from "./Root";
 
 
 export default function App(){
 
     let BrowserRouter = createBrowserRouter([{
         path: '',
-        element: <PhonePay />,
+        element: <Root />,
         children: [
-        //   {
-        //     path: 'register',
-        //     element: <PhonePay />
-        //   },
           {
             path: 'register/payment',
             element: <PhonePay />

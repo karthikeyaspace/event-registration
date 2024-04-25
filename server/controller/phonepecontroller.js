@@ -4,14 +4,14 @@ const {salt_key, merchant_id} = require('../secret/secret.js');
 
 const Payment = async (req, res) => {
     try{
-        console.log(req.data)
+        console.log("req.   data ",req.body)
         const merchanttxnid = req.body.transactionId;
         const data = {
             merchantId: merchant_id,
             merchantTransactionId: merchanttxnid,
             merchantUserId: req.body.MUID,
             amount: req.body.amount * 100,
-            redirectUrl: `http://localhost:3000/register/status/${merchanttxnid}`,
+            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/status/${merchanttxnid}`,
             redirectMode: 'POST',
             mobileNumber: req.body.number,
             paymentInstrument:{
@@ -40,7 +40,7 @@ const Payment = async (req, res) => {
         };
 
         const response = await axios.request(options).then(function(response){
-            console.log(response.data);
+            console.log("ressss0",response.data);
             return res.redirect(response.data.data.instrumentResponse.redirectInfo.url)
         })
         .catch(function(error){
@@ -77,10 +77,10 @@ const checkStatus = async(req, res) => {
 
     axios.request(options).then(async function(response){
         if(response.data.data.status === true){
-           const url = `http://localhost:3000/register/success`
+           const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/success`
            return res.redirect(url)
         } else {
-            const url = `http://localhost:3000/register/failure`
+            const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/failure`
             return res.redirect(url)
         }
     })
