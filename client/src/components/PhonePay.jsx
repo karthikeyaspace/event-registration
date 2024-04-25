@@ -8,9 +8,17 @@ export default function PhonePay(){
         name: "karthikeya",
         amount: 1,
         number: "8919712544",
-        MUID: "MUID" + Date.now(),
-        transactionId: "TPY" + Date.now()
+        MUID: "MUID123",
+        transactionId: "MT7850590068188104"
     }
+    
+    // const data = {
+    //     name: "karthikeya",
+    //     amount: 1,
+    //     number: "8919712544",
+    //     MUID: "MUID" + Date.now(),
+    //     transactionId: "TPY" + Date.now()
+    // }
 
     const handlePayment = async (e) => {
         e.preventDefault();

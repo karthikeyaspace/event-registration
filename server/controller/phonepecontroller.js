@@ -11,8 +11,8 @@ const Payment = async (req, res) => {
             merchantTransactionId: merchanttxnid,
             merchantUserId: req.body.MUID,
             amount: req.body.amount * 100,
-            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/status/${merchanttxnid}`,
             redirectMode: 'POST',
+            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/status/${merchanttxnid}`,
             mobileNumber: req.body.number,
             paymentInstrument:{
                 type: "PAY_PAGE"
@@ -39,13 +39,14 @@ const Payment = async (req, res) => {
             }
         };
 
-        const response = await axios.request(options).then(function(response){
-            console.log("ressss0",response.data);
+        axios.request(options)
+        .then(function (response){
+            console.log(response.data)
+            console.log(response.data.data.instrumentResponse.redirectInfo.url)
             return res.redirect(response.data.data.instrumentResponse.redirectInfo.url)
         })
-        .catch(function(error){
-            console.error(error);
-        });
+        .catch(err => console.log(err, "err"));
+        
     } catch(err){
         res.status(500).send({
             message: err.message || "Some error occurred while creating the Payment.",
@@ -55,7 +56,7 @@ const Payment = async (req, res) => {
 }   
 
 const checkStatus = async(req, res) => {
-    // console.log(res.req.body)
+    console.log("checkkkkkk ",res.req.body)
     const merchantTransactionId = res.req.body.transactionId;
     const merchantId = res.req.body.merchantId;
     const keyindex = 1;
@@ -76,9 +77,10 @@ const checkStatus = async(req, res) => {
     }
 
     axios.request(options).then(async function(response){
-        if(response.data.data.status === true){
+        console.log(response)
+        if(response.data.code === "PAYMENT_SUCCESS"){
            const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/success`
-           return res.redirect(url)
+            return res.redirect(url)
         } else {
             const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/failure`
             return res.redirect(url)
