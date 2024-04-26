@@ -14,7 +14,7 @@ const Payment = async (req, res) => {
             merchantUserId: req.body.MUID,
             amount: req.body.amount * 100,
             redirectMode: 'POST',
-            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/status/${merchanttxnid}`,
+            redirectUrl: `https://seahorse-app-6ysfg.ondigitalocean.app/register/status/${merchanttxnid}`,
             mobileNumber: req.body.number,
             paymentInstrument:{
                 type: "PAY_PAGE"
