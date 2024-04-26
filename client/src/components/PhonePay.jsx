@@ -48,7 +48,7 @@ export default function PhonePay(props) {
                     setLoading(false)
                 }, 1500)
                 console.log(res.data)
-                navigate(res.data)
+                // navigate(res.data)
             })
             .catch(err => {
                 setLoading(false)
@@ -61,23 +61,23 @@ export default function PhonePay(props) {
 
     return (
         <div className="container">
-            <div className="phonepe">
-                <form onSubmit={handleRegister}>
+            <div className="phonepe flex flex-col justify-center items-center h-screen">
+                <form onSubmit={handleRegister} className="flex flex-col justify-center items-left border-2 border-black p-12 rounded-lg mx-4">
                     {
                         data && (
                             <>
-                                <h2>Name: {data.name}</h2>
-                                <h2>Phone Number: {data.number}</h2>
-                                <h2>Amount: {data.amount}</h2>
+                                <h2 className="text-2xl mb-4 "><strong>Name:</strong> {data.name}</h2>
+                                <h2 className="text-2xl mb-4 "><strong>Phone Number:</strong> {data.number}</h2>
+                                <h2 className="text-2xl mb-4 "><strong>Amount:</strong> {data.amount}</h2>
                             </>
                         )
                     }
 
                     {
                         !loading ? (
-                            <button type="submit">Pay now</button>
+                            <button type="submit" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4">Pay now</button>
                         ) : (
-                            <button type="submit" disabled>Loading...</button>
+                            <button type="submit" disabled className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4">Loading...</button>
                         )
                     }
                 </form>
