@@ -23,7 +23,7 @@ export default function PhonePay(props) {
     userData = {...userData, MUID: data.MUID, transactionId: data.transactionId, status: "pending"}
     const handleRegister = async (e) => {
         e.preventDefault();
-        await axios.post('https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register', {...userData})
+        await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register', {...userData})
         .then(res => { 
             console.log(res.data)
             if(res.data.message === "Instance Created"){
@@ -40,7 +40,7 @@ export default function PhonePay(props) {
 
     const handlePayment = async () => {
         setLoading(true)
-        await axios.post('https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/payment', { ...data })
+        await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register/payment', { ...data })
             .then(res => {
                 setTimeout(() => {
                     setLoading(false)
