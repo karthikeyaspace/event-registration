@@ -21,6 +21,7 @@ app.use(express.json())
 app.use(cors())
 app.use(cors({
     origin: "technovista-registrations.vercel.app",
+    methods: ['GET', 'POST', 'PUT']
 }))
 
 const bodyParser = require("body-parser")
