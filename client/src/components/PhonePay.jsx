@@ -25,7 +25,7 @@ export default function PhonePay(props) {
         e.preventDefault();
         await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register', {...userData})
         .then(res => { 
-            console.log(res.data)
+            console.log("handle register", res.data)
             if(res.data.message === "Instance Created"){
                 handlePayment();
             }
@@ -50,7 +50,7 @@ export default function PhonePay(props) {
                 setLoading(false)
                 console.log(err)
             })
-        console.log(data)
+        console.log("handle Payment", data)
     }
 
 
