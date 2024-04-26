@@ -20,7 +20,7 @@ mongoClient.connect(process.env.MONGO_URL).then((client) => {
 app.use(express.json())
 app.use(cors())
 app.use(cors({
-    origin: "https://technovista-registrations.vercel.app/"
+    origin: "technovista-registrations.vercel.app",
 }))
 
 const bodyParser = require("body-parser")
