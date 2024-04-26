@@ -44,10 +44,10 @@ export default function PhonePay(props) {
         setLoading(true)
         await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register/payment', { ...data })
             .then(res => {
-                Navigate(res.data)
                 setTimeout(() => {
                     setLoading(false)
                 }, 1500)
+                navigate(res.data)
             })
             .catch(err => {
                 setLoading(false)
