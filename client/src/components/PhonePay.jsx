@@ -23,7 +23,7 @@ export default function PhonePay(){
     const handlePayment = async (e) => {
         e.preventDefault();
         setLoading(true)
-        await axios.post('https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/payment', {...data})
+        await axios.post('http://localhost:3000/register/payment', {...data})
         .then(res => {
             setTimeout(()=>{
                 setLoading(false)
@@ -39,10 +39,42 @@ export default function PhonePay(){
         <div className="container">
             <div className="phonepe">
                 <form onSubmit={handlePayment}>
-                    <p>Name: {data.name}</p>
-                    <p>Number: {data.number}</p>
-                    <p>Amount: {data.amount}</p>
-
+                <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>Register</h1>
+        <label>Name:</label>
+        <input type="text" {...register("Name")} />
+        <label>Email:</label>
+        <input type="email" {...register("Email")} />
+        <label>Phone Number:</label>
+        <input type="Number" {...register("Phone Number")}/>
+        <label>Gender</label>
+        <select {...register("gender")}>
+            <option value="female">female</option>
+            <option value="male">male</option>
+            <option value="other">other</option>
+        </select>
+        <select {...register("which college")}>
+            <option value="VNR VJIET">VNR VJIET</option>
+            <option value="Non VNR">Non VNR</option>
+        </select>
+        <label>Branch</label>
+        <select {...register("Branch")}>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="IT">IT</option>
+            <option value="MECH">MECH</option>
+            <option value="CIVIL">CIVIL</option>
+        </select>
+        <label>Year</label>
+        <select {...register("Year")}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <label>Roll no.</label>
+        <input type="text" {...register("Roll no.")}/>
                     {
                         !loading ? (
                             <button type="submit">Pay now</button>

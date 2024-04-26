@@ -12,7 +12,7 @@ const Payment = async (req, res) => {
             merchantUserId: req.body.MUID,
             amount: req.body.amount * 100,
             redirectMode: 'POST',
-            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/status/${merchanttxnid}`,
+            redirectUrl: `http://localhost:3000/register/status/${merchanttxnid}`,
             mobileNumber: req.body.number,
             paymentInstrument:{
                 type: "PAY_PAGE"
@@ -79,10 +79,10 @@ const checkStatus = async(req, res) => {
     axios.request(options).then(async function(response){
         console.log(response)
         if(response.data.code === "PAYMENT_SUCCESS"){
-           const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/success`
+           const url = `http://localhost:5173/register/success`
             return res.redirect(url)
         } else {
-            const url = `https://bug-free-acorn-445994w76pxhq99-5173.app.github.dev/register/failure`
+            const url = `http://localhost:5173/register/failure`
             return res.redirect(url)
         }
     })

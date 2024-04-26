@@ -2,7 +2,8 @@ import PhonePay from "./components/PhonePay";
 import React from "react";
 import Success from "./components/Success";
 import Failure from "./components/Failure";
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import Register from "./components/Register";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from "./Root";
 
 
@@ -12,6 +13,10 @@ export default function App(){
         path: '',
         element: <Root />,
         children: [
+          {
+            path: 'register',
+            element: <Register />
+          },
           {
             path: 'register/payment',
             element: <PhonePay />
