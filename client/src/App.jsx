@@ -5,7 +5,7 @@ import Failure from "./components/Failure";
 import Register from "./components/Register";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from "./Root";
-
+import Home from "./components/Home";
 
 export default function App(){
 
@@ -14,12 +14,12 @@ export default function App(){
         element: <Root />,
         children: [
           {
-            path: 'register',
-            element: <Register />
+            path: '',
+            element: <Home/>
           },
           {
-            path: 'register/payment',
-            element: <PhonePay />
+            path: 'register',
+            element: <Register />
           },
           {
             path: 'register/success',

@@ -2,7 +2,9 @@ const crypto = require('crypto');
 const axios = require('axios');
 const {salt_key, merchant_id} = require('../secret/secret.js');
 
+
 const Payment = async (req, res) => {
+    const registeredCollections = req.app.get('registeredCollections')
     try{
         console.log("req.   data ",req.body)
         const merchanttxnid = req.body.transactionId;
@@ -12,7 +14,7 @@ const Payment = async (req, res) => {
             merchantUserId: req.body.MUID,
             amount: req.body.amount * 100,
             redirectMode: 'POST',
-            redirectUrl: `http://localhost:3000/register/status/${merchanttxnid}`,
+            redirectUrl: `https://bug-free-acorn-445994w76pxhq99-3000.app.github.dev/register/status/${merchanttxnid}`,
             mobileNumber: req.body.number,
             paymentInstrument:{
                 type: "PAY_PAGE"
@@ -60,6 +62,7 @@ const checkStatus = async(req, res) => {
     const merchantTransactionId = res.req.body.transactionId;
     const merchantId = res.req.body.merchantId;
     const keyindex = 1;
+    const registeredCollections = req.app.get('registeredCollections')
 
     const string = `/pg/v1/status/${merchantId}/${merchantTransactionId}` + salt_key;
     const sha256 = crypto.createHash('sha256').update(string).digest('hex');
@@ -79,10 +82,26 @@ const checkStatus = async(req, res) => {
     axios.request(options).then(async function(response){
         console.log(response)
         if(response.data.code === "PAYMENT_SUCCESS"){
-           const url = `http://localhost:5173/register/success`
+           const url = `${process.env.FRONTEND_URL}register/success`
+
+            let user = {}
+            await registeredCollections.findOne({transactionId:merchantTransactionId})
+            .then(dbuser=>{
+                user = dbuser
+            })
+            let stat = "success"
+            await registeredCollections.updateOne({transactionId:merchantTransactionId}, {$set:{status:stat}})
             return res.redirect(url)
-        } else {
-            const url = `http://localhost:5173/register/failure`
+        } 
+        else {
+            const url = `${process.env.FRONTEND_URL}register/failure`
+            let user ={}
+            await registeredCollections.findOne({transactionId:merchantTransactionId})
+            .then(dbuser=>{
+                user = dbuser
+            })
+            let stat = "failure"
+            await registeredCollections.updateOne({transactionId: merchantTransactionId}, {$set:{status:stat}})
             return res.redirect(url)
         }
     })
