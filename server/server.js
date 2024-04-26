@@ -6,7 +6,9 @@ require('dotenv').config()
 
 app.use(express.json())
 app.use(cors())
-
+app.use(cors({
+    origin: "*"
+}))
 const bodyParser = require("body-parser")
 
 app.use(bodyParser.json())
