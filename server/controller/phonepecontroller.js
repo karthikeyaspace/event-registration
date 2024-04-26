@@ -48,7 +48,7 @@ const Payment = async (req, res) => {
             .then(function (response) {
                 console.log(response.data)
                 console.log(response.data.data.instrumentResponse.redirectInfo.url)
-                return res.redirect(response.data.data.instrumentResponse.redirectInfo.url)
+                return res.send(response.data.data.instrumentResponse.redirectInfo.url)
             })
             .catch(err => console.log(err, "err"));
 

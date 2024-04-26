@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 export default function PhonePay(props) {
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const amountToBePaid = props.userData.whichCollege === 'VNRVJIET' ? 149 : 199
     const data = {
@@ -42,6 +44,7 @@ export default function PhonePay(props) {
         setLoading(true)
         await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register/payment', { ...data })
             .then(res => {
+                Navigate(res.data)
                 setTimeout(() => {
                     setLoading(false)
                 }, 1500)
