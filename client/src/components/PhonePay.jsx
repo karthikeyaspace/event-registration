@@ -47,6 +47,7 @@ export default function PhonePay(props) {
                 setTimeout(() => {
                     setLoading(false)
                 }, 1500)
+                console.log(res.data)
                 navigate(res.data)
             })
             .catch(err => {
