@@ -20,7 +20,7 @@ mongoClient.connect(process.env.MONGO_URL).then((client) => {
 app.use(express.json())
 
 app.use(cors({
-    origin: "https://technovista-registrations.vercel.app",
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
     credentials: true
 }))

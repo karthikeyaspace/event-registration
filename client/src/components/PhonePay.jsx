@@ -25,7 +25,7 @@ export default function PhonePay(props) {
     userData = {...userData, MUID: data.MUID, transactionId: data.transactionId, status: "pending"}
     const handleRegister = async (e) => {
         e.preventDefault();
-        await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register', {...userData})
+        await axios.post('http://localhost:3000/register', {...userData})
         .then(res => { 
             console.log("handle register", res.data)
             if(res.data.message === "Instance Created"){
@@ -42,7 +42,7 @@ export default function PhonePay(props) {
 
     const handlePayment = async () => {
         setLoading(true)
-        await axios.post('https://seahorse-app-6ysfg.ondigitalocean.app/register/payment', { ...data })
+        await axios.post('http://localhost:3000/register/payment', { ...data })
             .then(res => {
                 setTimeout(() => {
                     setLoading(false)
