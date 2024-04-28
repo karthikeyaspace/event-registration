@@ -1,17 +1,21 @@
 import { useForm } from "react-hook-form"
+import { useContext } from "react"
+import { urlContext } from "../urlContext"
+
 
 export default function Form(props) {
+    const url = useContext(urlContext)
     const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
+    const handleFormSubmit = (data) => {
         props.setUserData(data)
-        props.setSubmit(true)
         console.log(data)
+        props.setSubmit(true)
     }
 
     return (
         <div className="container">
             <div className="form flex flex-col justify-center items-center my-8">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-left border-2 border-black p-4 sm:p-12 rounded-lg mx-4">
+                <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col justify-center items-left border-2 border-black p-4 sm:p-12 rounded-lg mx-4">
                     <h1 className="text-4xl m-auto">Register</h1>
                     <div className="input-cont">
                         <label>Name:</label>
@@ -36,7 +40,7 @@ export default function Form(props) {
                     <div className="input-cont"><label>College</label>
                         <select {...register("whichCollege")} required>
                             <option value="VNRVJIET">VNR VJIET</option>
-                            <option value="NonVNR">Non VNR</option>
+                            <option value="NONVNR">Non VNR</option>
                         </select>
                     </div>
                     <div className="input-cont"><label>Branch</label>
@@ -60,10 +64,9 @@ export default function Form(props) {
                     </div>
                     <div className="input-cont">
                         <label>Roll no.</label>
-                        <input type="text" {...register("roll no.")} required />
+                        <input type="text" {...register("roll")} required />
                     </div>
                     <button type='submit' className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-4">Register</button>
-
                 </form>
             </div>
         </div>

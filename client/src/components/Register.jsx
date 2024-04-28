@@ -1,5 +1,5 @@
 import Form from './Form'
-import PhonePay from './PhonePay';
+import Payment from './Payment';
 import { useState } from 'react'
 export default function Register(){
     const [userData,setUserData] = useState({});
@@ -8,7 +8,7 @@ export default function Register(){
     return (
         <>
           {
-            submit ? <PhonePay userData={userData} /> : 
+            submit ? <Payment userData={userData} /> : 
             <Form userData={userData} setUserData={setUserData} setSubmit={setSubmit} />
           }
         </>

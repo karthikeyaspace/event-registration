@@ -12,7 +12,7 @@ export default function PhonePay(props) {
         number: props.userData.phoneNumber,
         MUID: "MUID123",
         transactionId: "MT7850590068188104"
-    }
+    } 
 
     // const data = {
     //      name: props.userData.name,
