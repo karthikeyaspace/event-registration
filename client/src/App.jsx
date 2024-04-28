@@ -1,11 +1,12 @@
-import PhonePay from "./components/PhonePay";
+// import PhonePay from "./components/PhonePay";
 import React from "react";
-import Success from "./components/Success";
-import Failure from "./components/Failure";
+import Status from "./components/Status";
 import Register from "./components/Register";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from "./Root";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
+import Verify from "./components/Verify";
 
 export default function App(){
 
@@ -22,12 +23,16 @@ export default function App(){
             element: <Register />
           },
           {
-            path: 'register/success',
-            element: <Success />
+            path: "admin",
+            element: <Admin />
           },
           {
-            path: 'register/failure',
-            element: <Failure />
+            path: 'status',
+            element: <Status />
+          },
+          {
+            path:'admin/verify',
+            element: <Verify />
           }
         ]
       }])
