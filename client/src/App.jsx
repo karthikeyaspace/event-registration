@@ -2,9 +2,10 @@ import PhonePay from "./components/PhonePay";
 import React from "react";
 import Success from "./components/Success";
 import Failure from "./components/Failure";
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import Register from "./components/Register";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from "./Root";
-
+import Home from "./components/Home";
 
 export default function App(){
 
@@ -13,8 +14,12 @@ export default function App(){
         element: <Root />,
         children: [
           {
-            path: 'register/payment',
-            element: <PhonePay />
+            path: '',
+            element: <Home/>
+          },
+          {
+            path: 'register',
+            element: <Register />
           },
           {
             path: 'register/success',
